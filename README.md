@@ -91,6 +91,27 @@ src/main/java/edu/eci/arsw/blueprints
   - **UndersamplingFilter**: conserva 1 de cada 2 puntos.  
 - Activa los filtros mediante perfiles de Spring (`redundancy`, `undersampling`).  
 
+    ### Implementación de filtros
+
+    Dependiendo del filtro que desees implementar, puedes se debe modicar el valor por defcto que se tiene dentro de la clase
+    application.properties
+- 
+    ```
+    spring.profiles.active=redundancy // Filtro de redundancia
+    spring.profiles.active=undersampling // Filtro de undersampling
+    spring.profiles.active=default // Filtro identidad (sin cambios)
+    ```
+    Esto fue posible por medio de la anotación `@Profile` en las clases que implementan la interfaz `BlueprintsFilter`.
+
+    ###  Pruebas Funcionamiento 
+
+  - Filtro de Redundancia:
+  ![](Img/Post1.png)
+  ![](Img/Answer1.png)
+
+  - Filtro de Undersampling: 
+  ![](Img/Post2.png)
+  ![](Img/Answer2.png)
 ---
 
 ## ✅ Entregables
