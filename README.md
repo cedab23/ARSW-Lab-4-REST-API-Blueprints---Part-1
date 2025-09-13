@@ -85,6 +85,13 @@ src/main/java/edu/eci/arsw/blueprints
 - Expón documentación automática en `/swagger-ui.html`.  
 - Anota endpoints con `@Operation` y `@ApiResponse`.
 
+  <img width="704" height="359" alt="image" src="https://github.com/user-attachments/assets/9ef0829d-f4d1-47be-b1f0-a2ef97f692a0" />
+
+  <img width="832" height="176" alt="image" src="https://github.com/user-attachments/assets/4e50fc8b-8501-431a-becb-b25bb6253e80" />
+  <img width="841" height="297" alt="image" src="https://github.com/user-attachments/assets/7f9543e5-519e-49f4-9bab-af04870737fc" />
+  ### Descripcion:
+  Se añadieron anotaciones @Operation y @ApiResponse en los métodos del controlador (BlueprintsAPIController) para documentar cada endpoint, sus respuestas y descripciones.
+
 ### 5. Filtros de *Blueprints*
 - Implementa filtros:
   - **RedundancyFilter**: elimina puntos duplicados consecutivos.  
