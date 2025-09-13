@@ -57,7 +57,12 @@ src/main/java/edu/eci/arsw/blueprints
 ### 2. Migración a persistencia en PostgreSQL
 - Configura una base de datos PostgreSQL (puedes usar Docker).  
 - Implementa un nuevo repositorio `PostgresBlueprintPersistence` que reemplace la versión en memoria.  
-- Mantén el contrato de la interfaz `BlueprintPersistence`.  
+- Mantén el contrato de la interfaz `BlueprintPersistence`.
+
+### Adición de dependencias
+
+para manejar PostgreSQL a los blueprints, se debia manejar primero el pom.xml puesto que postgreSQL requiere de una
+dependencia y asimismo, la debida importación en el codigo para que este tenga una conexion con la base de datos deseada.
 
 ### 3. Buenas prácticas de API REST
 - Cambia el path base de los controladores a `/api/v1/blueprints`.  
@@ -79,11 +84,43 @@ src/main/java/edu/eci/arsw/blueprints
     "data": { "author": "john", "name": "house", "points": [...] }
   }
   ```
+### Creacion de ApiResponseBuilder
+
+La siguiente clase tiene como proposito principal el ser aquella que guarda las respuestas de forma ordenada, las cuales 
+en esta ocasion son las siguientes:
+
+- success
+- created
+- accepted
+- badRequest
+- notFound
+- internalServerError
+- forbidden
+
+junto a esto se hizo uso de "HttpStatus" con la finalidad de evitar quemar el digito de respuesta dentro del codigo y 
+mantenerlo de forma mas ordenada, ademas de brindar un mensaje mas normal al respecto con la finalidad de que el usuario
+conozca si se logro hacer la peticion o si esta fue falllida por algun motivo en particular retratado en los mensajes.
+
 
 ### 4. OpenAPI / Swagger
 - Configura `springdoc-openapi` en el proyecto.  
 - Expón documentación automática en `/swagger-ui.html`.  
 - Anota endpoints con `@Operation` y `@ApiResponse`.
+
+### Manejo de swagger
+swagger tiene un endpoint destinado, el cual tiene como finalidad mostrar la documentación en tiempo real del codigo, permitiendo
+conocer cuales son sus endpoints, que parametros solicitan y asimismo como se estan manejando los servicios REST dentro de la 
+aplicación, en nuestro caso se estaria realizando con el siguiente endpoint:
+```
+http://localhost:8080/swagger-ui.html
+```
+este endpoint nos abre la ventana dedicada a la documentación swagger, donde podremos apreciar como es que se estan comportando
+los endpoints actuales que ahora poseen la siguiente ruta base:
+
+```
+http://localhost:8080/api/v1/blueprints
+```
+y por consecuente, que endpoints estan respondiendo a los servicios REST junto a los parametros que deben diligenciar al respecto.
 
 ### 5. Filtros de *Blueprints*
 - Implementa filtros:
